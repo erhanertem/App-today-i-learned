@@ -5,9 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Today I Learned!</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Coiny&family=Sono:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Coiny&family=Sono:wght@400;600;700&display=swap');
+    </style>
+
+    <link href="style.css" rel="stylesheet" />
   </head>
   <body>
-    <header>
+    <header class="header">
       <img
         src="logo.png"
         alt="Today I Learned App logo"
@@ -18,7 +30,7 @@
       <button>Share a fact</button>
     </header>
 
-    <form>
+    <form class="fact-form">
       <input type="text" placeholder="Share a fact with the world..." />
       <span>200</span>
       <input type="text" placeholder="Trustworthy source..." />
@@ -42,7 +54,7 @@
 
       <section>
         <ul>
-          <li>
+          <li class="fact">
             <p>
               React is being developed by Meta (formerly facebook)
               <a
@@ -51,7 +63,7 @@
                 target="_blank"
                 >(Source)
               </a>
-              <span>#technology#</span>
+              <span class="tag">#technology#</span>
             </p>
             <div>
               <button>👍 <strong>24</strong></button>
@@ -59,7 +71,7 @@
               <button>⛔️ <strong>4</strong></button>
             </div>
           </li>
-          <li>
+          <li class="fact">
             <p>
               Millennial dads spend 3 times as much time with their kids than
               their fathers spent with them. In 1982, 43% of fathers had never
@@ -70,13 +82,14 @@
                 target="_blank"
                 >(Source)</a
               >
-              <span>#society#</span>
+              <span class="tag">#society#</span>
             </p>
             <div>
               <button>👍 <strong>11</strong></button>
               <button>🤯 <strong>2</strong></button>
               <button>⛔️ <strong>0</strong></button>
             </div>
+            <p>erhan ertem</p>
           </li>
         </ul>
       </section>

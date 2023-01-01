@@ -1,0 +1,47 @@
+/* Default global reset */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #262626;
+  font-family: 'Sono', sans-serif;
+  color: #fafaf9;
+  padding: 40px;
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.fact-form {
+  background-color: #44403c;
+  margin-bottom: 40px;
+  padding: 16px 40px;
+}
+
+h1 {
+  font-size: 42px;
+  text-transform: uppercase;
+  font-family: 'Coiny', Arial, sans-serif;
+}
+
+.fact {
+  font-size: 20px;
+  line-height: 1.4;
+  background-color: #44403c;
+  margin-bottom: 16px;
+  padding: 16px 24px;
+}
+
+.tag {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: 'Coiny', Arial, sans-serif;
+}
+
+ul {
+  list-style: none;
+}
