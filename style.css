@@ -1,9 +1,34 @@
-/* Default global reset */
+/* Default global and base resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  font: inherit;
 }
+
+html {
+  color-scheme: dark light;
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* Make sure imgs are responsive */
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+/* ///////////////////////////// */
 
 body {
   background-color: #262626;
@@ -20,6 +45,7 @@ body {
   background-color: #44403c;
   margin-bottom: 40px;
   padding: 16px 40px;
+  text-align: center;
 }
 
 h1 {
@@ -40,6 +66,9 @@ h1 {
   text-transform: uppercase;
   font-size: 14px;
   font-family: 'Coiny', Arial, sans-serif;
+  padding-top: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 ul {
