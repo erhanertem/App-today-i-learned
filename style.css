@@ -21,7 +21,7 @@ body {
   background-color: #262626;
   font-family: 'Sono', sans-serif;
   color: #fafaf9;
-  padding: 40px;
+  padding: 48px 64px;
 }
 
 /* Make sure imgs are responsive */
@@ -34,6 +34,10 @@ video {
 }
 
 /* MAIN LAYOUT */
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+}
 
 .main {
   display: grid;
@@ -60,6 +64,11 @@ video {
   margin-bottom: 40px;
   padding: 16px 40px;
   text-align: center;
+}
+
+.logo img {
+  width: 68px;
+  height: 68px;
 }
 
 h1 {
