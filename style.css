@@ -64,6 +64,37 @@ video {
   margin-bottom: 40px;
   padding: 16px 40px;
   text-align: center;
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.fact-form input,
+.fact-form select {
+  width: 220px;
+  background-color: #78716c;
+  border: none;
+  border-radius: 100px;
+  padding: 16px;
+  font-size: 18px;
+  color: inherit;
+  font-family: inherit; /* text color is not auto inherited from the parent for input by default in CSS */
+}
+
+.fact-form input:first-child {
+  flex-grow: 1; /* Allows the flex item to grap all the remaining space for himself */
+}
+
+.fact-form input::placeholder {
+  color: #a8a29e;
+}
+
+.fact-form span {
+  font-weight: 600;
+  font-size: 18px;
+  margin-right: 18px;
 }
 
 .logo img {
@@ -86,6 +117,7 @@ h1 {
   margin-bottom: 16px;
   padding: 16px 24px;
   letter-spacing: -1px;
+  border-radius: 16px;
 
   display: flex;
   align-items: center;
@@ -170,7 +202,7 @@ ul {
 }
 
 .btn-large {
-  font-size: 30px;
+  font-size: 20px;
   padding: 20px 32px 17px;
 }
 
