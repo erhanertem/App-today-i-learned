@@ -32,6 +32,10 @@ video {
   max-width: 100%;
 } /* Make sure imgs are responsive */
 
+.hidden {
+  display: none !important;
+}
+
 /* MAIN LAYOUT */
 .container {
   max-width: 1500px;

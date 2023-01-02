@@ -4,6 +4,9 @@
 
 #### **Objective:** Today-I-Learned App
 
+- Create HTML and CSS markup
+- Create SQL database via Supabase
+
 &emsp;
 
 #### Link to Project &rarr; [Today-I-Learned-App](#)
