@@ -99,10 +99,34 @@ h1 {
   padding-top: 3px;
   padding-left: 10px;
   padding-right: 10px;
+  border-radius: 100px;
 }
 
 .vote-buttons {
   margin-left: auto;
+  flex-shrink: 0;
+
+  display: flex;
+  gap: 8px;
+}
+
+.vote-buttons button {
+  border: none;
+  border-radius: 100px;
+  background-color: #78716c;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 100px;
+  font-family: inherit;
+  font-weight: 600;
+  color: inherit; /* text color is not auto inherited from the parent for buttons by default in CSS */
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.vote-buttons button:hover {
+  background-color: #292524;
 }
 
 ul {
@@ -120,4 +144,42 @@ ul {
 .source:hover,
 .source:active {
   color: #3b82f6;
+}
+
+.category {
+  margin-bottom: 16px;
+}
+
+.btn {
+  border: none;
+  font-family: 'Coiny', Arial, sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 17px;
+  padding: 16px 0 13px; /* top - left/right - bottom */
+  background-image: linear-gradient(135deg, #3b82f6, #ef4444, #16a34a, #eab308);
+  border-radius: 100px;
+  color: inherit; /* text color is not auto inherited from the parent for buttons by default in CSS */
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.btn:hover {
+  transform: scale(110%) rotate(-2deg);
+}
+
+.btn-large {
+  font-size: 30px;
+  padding: 20px 32px 17px;
+}
+
+.btn-all-categories {
+  margin-bottom: 16px;
+  width: 100%; /* Buttons are inlien elemments, therefore need to make it 100% width to force occupy the entire available space */
+}
+
+.btn-category {
+  width: 100%;
+  background-image: none;
 }
