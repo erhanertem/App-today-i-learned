@@ -49,7 +49,29 @@ const initialFacts = [
 
 //Create DOM elements: Render facts in list
 factsList.innerHTML = '';
-createFactsList(initialFacts, factsList);
+
+//Load data from Supabase
+loadFacts();
+
+async function loadFacts() {
+  //Fetch Supabase data
+  const res = await fetch(
+    'https://cdkkziejbymtbtqufpam.supabase.co/rest/v1/facts',
+    {
+      headers: {
+        apikey: '<SUPABASE API KEY>',
+        authorization: 'Bearer <SUPABASE API KEY>',
+      },
+    }
+  );
+  //
+  const data = await res.json(); //The json() method of the Response interface takes a Response stream and reads it to completion. It returns a promise which resolves with the result of parsing the body text as JSON.
+  // console.log(res, data);
+  createFactsList(data, factsList);
+}
+
+//Display facts list
+// createFactsList(initialFacts, factsList);
 
 // function createFactsList(dataArray) {
 //   const htmlArr = dataArray.map(
