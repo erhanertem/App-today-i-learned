@@ -59,16 +59,14 @@ function App() {
 				</div>
 				<button className="btn btn-large btn-open">Share a fact</button>
 			</header>
-
+			{/* FACTFORM */}
+			<NewFactForm />
 			<main className="main">
-				{/* FACTFORM */}
-				<NewFactForm />
 				{/* SIDEBAR */}
 				<CategoryFilter />
+				{/* FACTLIST */}
+				<FactList />
 			</main>
-
-			{/* FACTLIST */}
-			<FactList />
 		</>
 	);
 }
@@ -80,7 +78,25 @@ function NewFactForm() {
 
 // CATEGORY SIDEBAR COMPONENT
 function CategoryFilter() {
-	return <aside>Category Filter</aside>;
+	return (
+		<aside>
+			<ul>
+				<li className="category">
+					<button className="btn btn-all-categories">All</button>
+				</li>
+				{CATEGORIES.map((category) => (
+					<li key={category.name} className="category">
+						<button
+							className="btn btn-category"
+							style={{ backgroundColor: category.color }}
+						>
+							{category.name}
+						</button>
+					</li>
+				))}
+			</ul>
+		</aside>
+	);
 }
 
 // FACTLIST COMPONENT
