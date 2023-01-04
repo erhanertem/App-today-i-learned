@@ -6,7 +6,8 @@
 
 - Create HTML and CSS markup
 - Create SQL database via Supabase
-- Use create-react-app as frontend
+- Use create-react-app/vite+react as frontend bundlers
+- Learn writing JSX
 
 &emsp;
 
@@ -23,9 +24,10 @@
 <details>
 <summary>Installed NPM packages and utilized APIs:</summary>
 
-| Package command                          | Package link | Description |
-| ---------------------------------------- | ------------ | ----------- |
-| npx create-react-app app-today-i-learned |              |             |
+| Package command                                  | Package link                                          | Description                   |
+| ------------------------------------------------ | ----------------------------------------------------- | ----------------------------- |
+| npx create-react-app app-today-i-learned         | https://create-react-app.dev/                         | Build Tool ~ Create React App |
+| npm create vite today-i-learned --template react | https://vitejs.dev/guide/#index-html-and-project-root | Build Tool ~ Vite+React       |
 
 </details>
 
