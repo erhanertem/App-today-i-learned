@@ -75,7 +75,7 @@ function App() {
 
 // FACTFORM COMPONENT
 function NewFactForm() {
-	return <form className="fact-form hidden">Fact Form</form>;
+	return <form className="fact-form">Fact Form</form>;
 }
 
 // CATEGORY SIDEBAR COMPONENT
@@ -91,37 +91,47 @@ function FactList() {
 		<section>
 			<ul className="facts-list">
 				{facts.map((fact) => (
-					<li key={fact.id} className="fact">
-						<p>
-							{fact.text}
-							<a
-								className="source"
-								rel="noreferrer"
-								href={fact.source}
-								target="_blank"
-							>
-								(Source)
-							</a>
-						</p>
-						<span
-							className="tag"
-							style={{
-								backgroundColor: CATEGORIES.find(
-									(cat) => cat.name === fact.category,
-								).color,
-							}}
-						>
-							{fact.category}
-						</span>
-						<div className="vote-buttons">
-							<button>👍 {fact.votesInteresting}</button>
-							<button>🤯 {fact.votesMindblowing}</button>
-							<button>⛔️ {fact.votesFalse}</button>
-						</div>
-					</li>
+					<Fact key={fact.id} factObj={fact} /> //React keyid on each component needs to be declared the moment they were created not in the Fact function body
 				))}
 			</ul>
 		</section>
+	);
+}
+
+function Fact({ factObj }) {
+	// .function Fact(props) {
+	// console.log(props);
+	// const { factObj } = props;
+
+	return (
+		<li className="fact">
+			<p>
+				{factObj.text}
+				<a
+					className="source"
+					rel="noreferrer"
+					href={factObj.source}
+					target="_blank"
+				>
+					(Source)
+				</a>
+			</p>
+			<span
+				className="tag"
+				style={{
+					backgroundColor: CATEGORIES.find(
+						(cat) => cat.name === factObj.category,
+					).color,
+				}}
+			>
+				{factObj.category}
+			</span>
+			<div className="vote-buttons">
+				<button>👍 {factObj.votesInteresting}</button>
+				<button>🤯 {factObj.votesMindblowing}</button>
+				<button>⛔️ {factObj.votesFalse}</button>
+			</div>
+		</li>
 	);
 }
 
