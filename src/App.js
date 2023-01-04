@@ -46,23 +46,10 @@ const initialFacts = [
 	},
 ];
 
-function Counter() {
-	const [count, setCount] = useState(8);
-
-	return (
-		<div>
-			<span style={{ fontSize: "40px" }}>{count}</span>
-			<button
-				className="btn btn-large"
-				onClick={() => setCount((count) => count + 1)}
-			>
-				+1
-			</button>
-		</div>
-	);
-}
-
 function App() {
+	//->1.Define state variable
+	const [showForm, setShowForm] = useState(false); //showForm is the name of the state, setShowForm is the executing function / useState(value) --> value is the default value for the setShowForm()
+
 	const appTitle = "Today I Learned ";
 
 	return (
@@ -74,11 +61,17 @@ function App() {
 					<img src="logo.png" alt="Today I Learned App logo" />
 					<h1>{appTitle}</h1>
 				</div>
-				<button className="btn btn-large btn-open">Share a fact</button>
+				<button
+					className="btn btn-large btn-open"
+					// ->#3.Update state variable
+					onClick={() => setShowForm((show) => !show)}
+				>
+					Share a fact
+				</button>
 			</header>
-			{/* FACTFORM */}
-			<Counter />
-			<NewFactForm />
+			{/*//->2.Use state variable */}
+			{/* FACTFORM - with on/off state */}
+			{showForm ? <NewFactForm /> : null}
 			<main className="main">
 				{/* SIDEBAR */}
 				<CategoryFilter />
