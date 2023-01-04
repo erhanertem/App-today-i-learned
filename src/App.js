@@ -50,25 +50,11 @@ function App() {
 	//->1.Define state variable
 	const [showForm, setShowForm] = useState(false); //showForm is the name of the state, setShowForm is the executing function / useState(value) --> value is the default value for the setShowForm()
 
-	const appTitle = "Today I Learned ";
-
 	return (
 		<>
 			{/* FRAGMENT OPENER TAG */}
-			{/* HEADER */}
-			<header className="header">
-				<div className="logo">
-					<img src="logo.png" alt="Today I Learned App logo" />
-					<h1>{appTitle}</h1>
-				</div>
-				<button
-					className="btn btn-large btn-open"
-					// ->#3.Update state variable
-					onClick={() => setShowForm((show) => !show)}
-				>
-					Share a fact
-				</button>
-			</header>
+			{/* HEADER - Note: We would need access to showForm & setShowForm in the Header component so we pass them as a react prop*/}
+			<Header showForm={showForm} setShowForm={setShowForm} />
 			{/*//->2.Use state variable */}
 			{/* FACTFORM - with on/off state */}
 			{showForm ? <NewFactForm /> : null}
@@ -79,6 +65,27 @@ function App() {
 				<FactList />
 			</main>
 		</>
+	);
+}
+
+// HEADER COMPONENT
+function Header({ showForm, setShowForm }) {
+	const appTitle = "Today I Learned ";
+
+	return (
+		<header className="header">
+			<div className="logo">
+				<img src="logo.png" alt="Today I Learned App logo" />
+				<h1>{appTitle}</h1>
+			</div>
+			<button
+				className="btn btn-large btn-open"
+				// ->#3.Update state variable
+				onClick={() => setShowForm((show) => !show)}
+			>
+				{showForm ? "Close" : "Share a fact"}
+			</button>
+		</header>
 	);
 }
 
