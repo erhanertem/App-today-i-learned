@@ -91,7 +91,51 @@ function Header({ showForm, setShowForm }) {
 
 // FACTFORM COMPONENT
 function NewFactForm() {
-	return <form className="fact-form">Fact Form</form>;
+	const [text, setText] = useState(""); //set text data - create a text named state with setText function with a initial value of ''
+	const [source, setSource] = useState(""); //set source data
+	const [category, setCategory] = useState(""); // set category data
+
+	function handleSubmit(e) {
+		e.preventDefault();
+		console.log(text, source, category);
+	}
+
+	return (
+		<form className="fact-form" onSubmit={handleSubmit}>
+			<input
+				type="text"
+				placeholder="Share a fact with the world..."
+				required
+				value={text}
+				onChange={(event) => {
+					if (text.length === 200) return;
+					setText(event.target.value);
+				}}
+			/>
+			<span>{200 - text.length}</span>
+			<input
+				type="text"
+				placeholder="Trustworthy source..."
+				required
+				value={source}
+				onChange={(event) => setSource(event.target.value)}
+			/>
+			<select
+				name="category"
+				required
+				value={category}
+				onChange={(event) => setCategory(event.target.value)}
+			>
+				<option value="">Choose category:</option>
+				{CATEGORIES.map((category) => (
+					<option key={category.name} value={category.name}>
+						{category.name.toUpperCase()}
+					</option>
+				))}
+			</select>
+			<button className="btn btn-large">Post</button>
+		</form>
+	);
 }
 
 // CATEGORY SIDEBAR COMPONENT
