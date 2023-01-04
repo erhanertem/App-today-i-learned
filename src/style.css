@@ -1,0 +1,249 @@
+/* Default global and base resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font: inherit;
+}
+
+html {
+  color-scheme: dark light;
+}
+
+body {
+  min-height: 100vh;
+
+  background-color: #262626;
+  font-family: 'Sono', sans-serif;
+  color: #fafaf9;
+  padding: 48px 64px;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+} /* Make sure imgs are responsive */
+
+.hidden {
+  display: none !important;
+}
+
+/* MAIN LAYOUT */
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 48px;
+}
+
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.header {
+  margin-bottom: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.fact-form {
+  background-color: #44403c;
+  margin-bottom: 40px;
+  padding: 16px 32px;
+  text-align: center;
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.fact-form input,
+.fact-form select {
+  width: 220px;
+  background-color: #78716c;
+  border: none;
+  border-radius: 100px;
+  padding: 16px;
+  font-size: 18px;
+  color: inherit;
+  font-family: inherit; /* text color is not auto inherited from the parent for input by default in CSS */
+}
+
+.fact-form input:first-child {
+  flex-grow: 1; /* Allows the flex item to grap all the remaining space for himself */
+}
+
+.fact-form input::placeholder {
+  color: #a8a29e;
+}
+
+.fact-form span {
+  font-weight: 600;
+  font-size: 18px;
+  margin-right: 18px;
+}
+
+@media (max-width: 1000px) {
+  body {
+    padding: 32px 48px;
+  }
+
+  .fact-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .fact-form input,
+  .fact-form select {
+    width: auto;
+  }
+}
+
+.logo img {
+  width: 68px;
+  height: 68px;
+}
+
+h1 {
+  font-size: 42px;
+  text-transform: uppercase;
+  font-family: 'Coiny', Arial, sans-serif;
+  line-height: 1;
+  margin-top: 5px;
+}
+
+.fact {
+  font-size: 20px;
+  line-height: 1.4;
+  background-color: #44403c;
+  margin-bottom: 16px;
+  padding: 16px 24px;
+  letter-spacing: -1px;
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (max-width: 1200px) {
+  .fact {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+.tag {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: 'Coiny', Arial, sans-serif;
+  padding-top: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 100px;
+}
+
+.vote-buttons {
+  margin-left: auto;
+  flex-shrink: 0;
+
+  display: flex;
+  gap: 8px;
+}
+
+.vote-buttons button {
+  border: none;
+  border-radius: 100px;
+  background-color: #78716c;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 100px;
+  font-family: inherit;
+  font-weight: 600;
+  color: inherit; /* text color is not auto inherited from the parent for buttons by default in CSS */
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.vote-buttons button:hover {
+  background-color: #292524;
+}
+
+ul {
+  list-style: none;
+}
+
+.source:link,
+.source:visited {
+  color: #a8a29e;
+  text-decoration: none;
+  margin-left: 12px;
+  transition: 0.3s;
+}
+
+.source:hover,
+.source:active {
+  color: #3b82f6;
+}
+
+.category {
+  margin-bottom: 16px;
+}
+
+.btn {
+  border: none;
+  font-family: 'Coiny', Arial, sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 17px;
+  padding: 16px 0 13px; /* top - left/right - bottom */
+  background-image: linear-gradient(135deg, #3b82f6, #ef4444, #16a34a, #eab308);
+  border-radius: 100px;
+  color: inherit; /* text color is not auto inherited from the parent for buttons by default in CSS */
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.btn:hover {
+  transform: scale(110%) rotate(-2deg);
+}
+
+.btn-large {
+  font-size: 20px;
+  padding: 20px 32px 17px;
+}
+
+.btn-all-categories {
+  margin-bottom: 16px;
+  width: 100%; /* Buttons are inlien elemments, therefore need to make it 100% width to force occupy the entire available space */
+}
+
+.btn-category {
+  width: 100%;
+  background-image: none;
+}
