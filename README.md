@@ -24,12 +24,11 @@
 <details>
 <summary>Installed NPM packages and utilized APIs:</summary>
 
-| Package command                                  | Package link                                                                                                                     | Description                                                                                           |
-| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| npx create-react-app app-today-i-learned         | <https://create-react-app.dev/>                                                                                                  | Build Tool ~ Create React App                                                                         |
-| npm create vite today-i-learned --template react | <https://vitejs.dev/guide/#index-html-and-project-root>                                                                          | Build Tool ~ Vite+React                                                                               |
-| npm install @supabase/supabase-js                | <https://supabase.com/docs/guides/getting-started/tutorials/with-react> OR <https://www.npmjs.com/package/@supabase/supabase-js> | An isomorphic JavaScript client for Supabase                                                          |
-| npm i dotenv                                     | <https://www.npmjs.com/package/dotenv>                                                                                           | Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env |
+| Package command                                  | Package link                                                                                                                     | Description                                  |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| npx create-react-app app-today-i-learned         | <https://create-react-app.dev/>                                                                                                  | Build Tool ~ Create React App                |
+| npm create vite today-i-learned --template react | <https://vitejs.dev/guide/#index-html-and-project-root>                                                                          | Build Tool ~ Vite+React                      |
+| npm install @supabase/supabase-js                | <https://supabase.com/docs/guides/getting-started/tutorials/with-react> OR <https://www.npmjs.com/package/@supabase/supabase-js> | An isomorphic JavaScript client for Supabase |
 
 </details>
 
