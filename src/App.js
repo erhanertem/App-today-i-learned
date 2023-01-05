@@ -54,12 +54,13 @@ function App() {
 	const [facts, setFacts] = useState([]); //facts is the name of the used current state value, setFacts is the executing/updater function of the state value / useState(default_value) //IMPORTANT! Moved to the parent (here) so that both FactList and NewFactForm can share setFacts()
 
 	useEffect(function () {
-		async function getFacts() {
+		(async function () {
+			// async function getFacts() {
 			const { data: facts, error } = await supabase.from("facts").select("*"); //Wait the all fact data from supabase
 			// console.log(facts);
 			setFacts(facts); //setFacts with the received supabase data
-		}
-		getFacts();
+		})(); //IIFE function
+		// getFacts();
 	}, []); //React hook [] is the baseline array for filling in data and fills inside with the database data
 
 	return (
