@@ -296,7 +296,7 @@ function CategoryFilter({ setCurrentCategory }) {
 
 // FACTLIST COMPONENT
 function FactList({ facts }) {
-	// if (facts.length === 0) {
+	//Guard Clause
 	if (facts.length === 0) {
 		return (
 			<p className="message">
