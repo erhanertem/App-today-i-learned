@@ -53,25 +53,32 @@ function App() {
 	const [showForm, setShowForm] = useState(false); //showForm is the name of the used current state value, setShowForm is the executing/updater function of the state value / useState(default_value) //IMPORTANT! Moved to the parent (here) so that both Header and App
 	const [facts, setFacts] = useState([]); //facts is the name of the used current state value, setFacts is the executing/updater function of the state value / useState(default_value) //IMPORTANT! Moved to the parent (here) so that both FactList and NewFactForm can share setFacts()
 	const [isLoading, setIsLoading] = useState(false);
+	const [currentCategory, setCurrentCategory] = useState("all"); //By default currentCategory is set to all
 
-	useEffect(function () {
-		(async function () {
-			//Set loading active for the supabase data
-			setIsLoading(true);
-			// async function getFacts() {
-			const { data: facts, error } = await supabase
-				.from("facts")
-				.select("*")
-				.order("votesInteresting", { ascending: false })
-				.limit(1000); //Wait the all fact data from supabase
-			// console.log(facts);
+	useEffect(
+		function () {
+			(async function () {
+				//->#1.Set loading active for the supabase data
+				setIsLoading(true);
+				//->#2.Define supabase query extend
+				let query = supabase.from("facts").select("*");
+				//->#3.Define currentCategory if its not all
+				if (currentCategory !== "all")
+					query = query.eq("category", currentCategory); //column category / value: currentCategory from props
+				//->#4.Fetch datat from supabase
+				const { data: facts, error } = await query
+					.order("votesInteresting", { ascending: false })
+					.limit(1000); //Wait the all fact data from supabase
+				// console.log(facts);
 
-			if (!error) setFacts(facts); //setFacts with the received supabase data
-			else alert("There was a problem getting data");
-			setIsLoading(false); //Reset the loading active once the supabase data is succesufully received...
-		})(); //IIFE function
-		// getFacts();
-	}, []); //React hook [] is the baseline array for filling in data and fills inside with the database data
+				if (!error) setFacts(facts); //setFacts with the received supabase data
+				else alert("There was a problem getting data");
+				setIsLoading(false); //Reset the loading active once the supabase data is succesufully received...
+			})(); //IIFE function
+			// getFacts();
+		},
+		[currentCategory], // [] is the react hook dependency array
+	);
 
 	return (
 		<>
@@ -85,7 +92,7 @@ function App() {
 			) : null}
 			<main className="main">
 				{/* SIDEBAR */}
-				<CategoryFilter />
+				<CategoryFilter setCurrentCategory={setCurrentCategory} />
 				{/* FACTLIST */}
 				{isLoading ? <Loader /> : <FactList facts={facts} />}
 			</main>
@@ -259,18 +266,24 @@ function NewFactForm({ setShowForm, setFacts }) {
 }
 
 // CATEGORY SIDEBAR COMPONENT
-function CategoryFilter() {
+function CategoryFilter({ setCurrentCategory }) {
 	return (
 		<aside>
 			<ul>
 				<li className="category">
-					<button className="btn btn-all-categories">All</button>
+					<button
+						className="btn btn-all-categories"
+						onClick={() => setCurrentCategory("all")}
+					>
+						All
+					</button>
 				</li>
 				{CATEGORIES.map((category) => (
 					<li key={category.name} className="category">
 						<button
 							className="btn btn-category"
 							style={{ backgroundColor: category.color }}
+							onClick={() => setCurrentCategory(category.name)}
 						>
 							{category.name}
 						</button>
