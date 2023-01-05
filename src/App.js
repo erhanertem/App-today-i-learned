@@ -52,13 +52,23 @@ function App() {
 	//->1.Define state variable
 	const [showForm, setShowForm] = useState(false); //showForm is the name of the used current state value, setShowForm is the executing/updater function of the state value / useState(default_value) //IMPORTANT! Moved to the parent (here) so that both Header and App
 	const [facts, setFacts] = useState([]); //facts is the name of the used current state value, setFacts is the executing/updater function of the state value / useState(default_value) //IMPORTANT! Moved to the parent (here) so that both FactList and NewFactForm can share setFacts()
+	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(function () {
 		(async function () {
+			//Set loading active for the supabase data
+			setIsLoading(true);
 			// async function getFacts() {
-			const { data: facts, error } = await supabase.from("facts").select("*"); //Wait the all fact data from supabase
+			const { data: facts, error } = await supabase
+				.from("facts")
+				.select("*")
+				.order("votesInteresting", { ascending: false })
+				.limit(1000); //Wait the all fact data from supabase
 			// console.log(facts);
-			setFacts(facts); //setFacts with the received supabase data
+
+			if (!error) setFacts(facts); //setFacts with the received supabase data
+			else alert("There was a problem getting data");
+			setIsLoading(false); //Reset the loading active once the supabase data is succesufully received...
 		})(); //IIFE function
 		// getFacts();
 	}, []); //React hook [] is the baseline array for filling in data and fills inside with the database data
@@ -77,10 +87,14 @@ function App() {
 				{/* SIDEBAR */}
 				<CategoryFilter />
 				{/* FACTLIST */}
-				<FactList facts={facts} />
+				{isLoading ? <Loader /> : <FactList facts={facts} />}
 			</main>
 		</>
 	);
+}
+
+function Loader() {
+	return <p className="message">Loading...</p>;
 }
 
 // HEADER COMPONENT
