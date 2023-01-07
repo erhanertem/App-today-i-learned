@@ -60,16 +60,16 @@ function App() {
 			(async function () {
 				//->#1.Set loading active for the supabase data
 				setIsLoading(true);
-				//->#2.Define supabase query extend
+				//->#2.Define supabase query extend - no data fetching yet!
 				let query = supabase.from("facts").select("*");
-				//->#3.Define currentCategory if its not all
+				//->#3.Define currentCategory if its not "all"
 				if (currentCategory !== "all")
 					query = query.eq("category", currentCategory); //column category / value: currentCategory from props
-				//->#4.Fetch datat from supabase
+				//->#4.Fetch data from supabase
 				const { data: facts, error } = await query
 					.order("votesInteresting", { ascending: false })
-					.limit(1000); //Wait the all fact data from supabase
-				// console.log(facts);
+					.limit(1000);
+				// console.log(await query);
 
 				if (!error) setFacts(facts); //setFacts with the received supabase data
 				else alert("There was a problem getting data");
@@ -77,7 +77,7 @@ function App() {
 			})(); //IIFE function
 			// getFacts();
 		},
-		[currentCategory], // [] is the react hook dependency array
+		[currentCategory], // IMPORTANT! [] is the react hook dependency array. Meaning when there is a change incurred for currentCategory triggers this function to be self-executed!
 	);
 
 	return (
@@ -300,7 +300,7 @@ function FactList({ facts }) {
 	if (facts.length === 0) {
 		return (
 			<p className="message">
-				No facts for this category yet! Create the first one 😋
+				No facts for this category yet! Create the first one ☝
 			</p>
 		);
 	}
