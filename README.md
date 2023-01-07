@@ -11,7 +11,7 @@
 
 &emsp;
 
-#### Link to Project &rarr; [Today-I-Learned-App](#)
+#### Link to Project &rarr; [Today-I-Learned-App](https://today-i-learned-app-erhan-ertem.netlify.app)
 
 #### Project Preview
 
