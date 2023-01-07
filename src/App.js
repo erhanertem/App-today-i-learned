@@ -225,7 +225,7 @@ function NewFactForm({ setShowForm, setFacts }) {
 				// .insert([{ text: text, source: source, category: category }]);
 				.select(); //NOTE: from() & insert() are already enough for supoabase to register the data however we also want to receive the new datat created in spabase back to persist in our UI so we use select() supabase method
 			// console.log(newFact);
-
+			setIsUploading(false);
 			//->#4.Add the new fact to the UI: add the fact to react state
 			setFacts((facts) => [newFact[0], ...facts]); // newFact data is returned as array with single entry which is why we use [0]
 			//->#5.Reset input fields to empty
