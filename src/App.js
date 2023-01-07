@@ -130,6 +130,7 @@ function NewFactForm({ setShowForm, setFacts }) {
 	const [text, setText] = useState(""); //set text data - create a text named state with setText function with a initial value of ''
 	const [source, setSource] = useState("https://www.udemy.com/course/"); //set source data - TEMPORARILY SET THIS FOR QUICK POSTING
 	const [category, setCategory] = useState(""); // set category data
+	const [isUploading, setIsUploading] = useState(false);
 
 	function isValidURL(urlString) {
 		// //#1.WEB URL API & REGEX HYBRID
@@ -196,33 +197,42 @@ function NewFactForm({ setShowForm, setFacts }) {
 		return multiUrlPattern.test(urlString);
 	}
 
-	function handleSubmit(e) {
-		//#1.Prevent the browser reload
+	async function handleSubmit(e) {
+		//->#1.Prevent the browser reload
 		e.preventDefault();
-		console.log(text, source, category);
-		//#2.Check if data is valid, if so, create a new fact
+		// console.log(text, source, category);
+		//->#2.Check if data is valid, if so, create a new fact
 		// if (text && isValidURL(source) && category && text.length <= 200)
 		//Note: (this stage renders useless if the form input items are marked required in the HTML and text.length surpassing 200 is avoided via controller previously)
 		if (isValidURL(source)) {
 			console.log("there is a data");
-			//#3.Create a new fact object
-			const newFact = {
-				id: Math.round(Math.random() * 100000000),
-				text, // text: text, //ES6
-				source, // source: source, //ES6
-				category, // category: category, //ES6
-				votesInteresting: 24,
-				votesMindblowing: 9,
-				votesFalse: 4,
-				createdIn: new Date().getFullYear(),
-			};
-			//#4.Add the new fact to the UI: add the fact to react state
-			setFacts((facts) => [newFact, ...facts]);
-			//#5.Reset input fields to empty
+			// //#3.Create a new fact object
+			// const newFact = {
+			// 	id: Math.round(Math.random() * 100000000),
+			// 	text, // text: text, //ES6
+			// 	source, // source: source, //ES6
+			// 	category, // category: category, //ES6
+			// 	votesInteresting: 24,
+			// 	votesMindblowing: 9,
+			// 	votesFalse: 4,
+			// 	createdIn: new Date().getFullYear(),
+			// };
+			//->#3.Upload fact to Supabase and receive the new fact object
+			setIsUploading(true);
+			const { data: newFact, error } = await supabase //rename data to newFact
+				.from("facts")
+				.insert([{ text, source, category }]) //ES6 version
+				// .insert([{ text: text, source: source, category: category }]);
+				.select(); //NOTE: from() & insert() are already enough for supoabase to register the data however we also want to receive the new datat created in spabase back to persist in our UI so we use select() supabase method
+			// console.log(newFact);
+
+			//->#4.Add the new fact to the UI: add the fact to react state
+			setFacts((facts) => [newFact[0], ...facts]); // newFact data is returned as array with single entry which is why we use [0]
+			//->#5.Reset input fields to empty
 			setText("");
 			setSource("");
 			setCategory("");
-			//#6.Close the form
+			//->#6.Close the form
 			setShowForm(false);
 		}
 	}
@@ -238,7 +248,9 @@ function NewFactForm({ setShowForm, setFacts }) {
 					if (text.length === 200) return;
 					setText(event.target.value);
 				}}
+				disabled={isUploading}
 			/>
+			{/* disabled attribute temporarily disables the input tag based on the boolean value registered to it */}
 			<span>{200 - text.length}</span>
 			<input
 				type="text"
@@ -246,13 +258,17 @@ function NewFactForm({ setShowForm, setFacts }) {
 				required
 				value={source}
 				onChange={(event) => setSource(event.target.value)}
+				disabled={isUploading}
 			/>
+			{/* disabled attribute temporarily disables the input tag based on the boolean value registered to it */}
 			<select
 				name="category"
 				required
 				value={category}
 				onChange={(event) => setCategory(event.target.value)}
+				disabled={isUploading}
 			>
+				{/* disabled attribute temporarily disables the select tag based on the boolean value registered to it */}
 				<option value="">Choose category:</option>
 				{CATEGORIES.map((category) => (
 					<option key={category.name} value={category.name}>
@@ -260,7 +276,10 @@ function NewFactForm({ setShowForm, setFacts }) {
 					</option>
 				))}
 			</select>
-			<button className="btn btn-large">Post</button>
+			<button className="btn btn-large" disabled={isUploading}>
+				{/* disabled attribute temporarily disables the button tag based on the boolean value registered to it */}
+				Post
+			</button>
 		</form>
 	);
 }
