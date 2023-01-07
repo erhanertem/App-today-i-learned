@@ -345,6 +345,9 @@ function Fact({ factObj, setFacts }) {
 	// const { factObj } = props;
 	const [isUpdating, setIsUpdating] = useState(false);
 
+	const isDisputed =
+		factObj.votesInteresting + factObj.votesMindblowing < factObj.votesFalse;
+
 	async function handleVote(voteType) {
 		//#1.Update supabase
 		setIsUpdating(true); //disable button for clicking before database update
@@ -368,6 +371,7 @@ function Fact({ factObj, setFacts }) {
 	return (
 		<li className="fact">
 			<p>
+				{isDisputed ? <span className="disputed">[🚫 DISPUTED]</span> : null}
 				{factObj.text}
 				<a
 					className="source"
