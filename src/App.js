@@ -132,7 +132,7 @@ function Header({ showForm, setShowForm }) {
 // FACTFORM COMPONENT
 function NewFactForm({ setShowForm, setFacts }) {
 	const [text, setText] = useState(""); //set text data - create a text named state with setText function with a initial value of ''
-	const [source, setSource] = useState("https://www.udemy.com/course/"); //set source data - TEMPORARILY SET THIS FOR QUICK POSTING
+	const [source, setSource] = useState(""); //set source data - TEMPORARILY SET THIS FOR QUICK POSTING
 	const [category, setCategory] = useState(""); // set category data
 	const [isUploading, setIsUploading] = useState(false);
 
