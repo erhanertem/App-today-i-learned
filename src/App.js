@@ -94,7 +94,11 @@ function App() {
 				{/* SIDEBAR */}
 				<CategoryFilter setCurrentCategory={setCurrentCategory} />
 				{/* FACTLIST */}
-				{isLoading ? <Loader /> : <FactList facts={facts} />}
+				{isLoading ? (
+					<Loader />
+				) : (
+					<FactList facts={facts} setFacts={setFacts} />
+				)}
 			</main>
 		</>
 	);
@@ -314,7 +318,7 @@ function CategoryFilter({ setCurrentCategory }) {
 }
 
 // FACTLIST COMPONENT
-function FactList({ facts }) {
+function FactList({ facts, setFacts }) {
 	//Guard Clause
 	if (facts.length === 0) {
 		return (
@@ -328,17 +332,37 @@ function FactList({ facts }) {
 		<section>
 			<ul className="facts-list">
 				{facts.map((fact) => (
-					<Fact key={fact.id} factObj={fact} /> //React keyid on each component needs to be declared the moment they were created not in the Fact function body
+					<Fact key={fact.id} factObj={fact} setFacts={setFacts} /> //React keyid on each component needs to be declared the moment they were created not in the Fact function body
 				))}
 			</ul>
 		</section>
 	);
 }
 
-function Fact({ factObj }) {
+function Fact({ factObj, setFacts }) {
 	// .function Fact(props) {
 	// console.log(props);
 	// const { factObj } = props;
+	const [isUpdating, setIsUpdating] = useState(false);
+
+	async function handleVote() {
+		//#1.Update supabase
+		setIsUpdating(true); //disable button for clicking before database update
+		const { data: updatedFact, error } = await supabase
+			.from("facts")
+			.update({ votesInteresting: factObj.votesInteresting + 1 })
+			.eq("id", factObj.id)
+			.select();
+		// console.log(updatedFact);
+		setIsUpdating(false); //enable button for clicking after database update
+		//#2.Update UI by replacing the one that got changed from the actual Reach state object
+		if (!error)
+			setFacts((facts) =>
+				facts.map((eachFactEl) =>
+					eachFactEl.id === factObj.id ? updatedFact[0] : eachFactEl,
+				),
+			);
+	}
 
 	return (
 		<li className="fact">
@@ -364,9 +388,21 @@ function Fact({ factObj }) {
 				{factObj.category}
 			</span>
 			<div className="vote-buttons">
-				<button>👍 {factObj.votesInteresting}</button>
-				<button>🤯 {factObj.votesMindblowing}</button>
-				<button>⛔️ {factObj.votesFalse}</button>
+				<button
+					onClick={() => handleVote("votesInteresting")}
+					disabled={isUpdating}
+				>
+					👍 {factObj.votesInteresting}
+				</button>
+				<button
+					onClick={() => handleVote("votesMindblowing")}
+					disabled={isUpdating}
+				>
+					🤯 {factObj.votesMindblowing}
+				</button>
+				<button onClick={() => handleVote("votesFalse")} disabled={isUpdating}>
+					⛔️ {factObj.votesFalse}
+				</button>
 			</div>
 		</li>
 	);

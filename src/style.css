@@ -36,6 +36,11 @@ video {
 	display: none !important;
 }
 
+::selection {
+	color: #fafaf9;
+	background: #a8a29e;
+}
+
 /* MAIN LAYOUT */
 
 #root {
@@ -200,6 +205,10 @@ h1 {
 
 .vote-buttons button:hover {
 	background-color: #292524;
+}
+
+.vote-buttons button:disabled {
+	background-color: #44403c;
 }
 
 ul {
