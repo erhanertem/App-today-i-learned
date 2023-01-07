@@ -345,12 +345,13 @@ function Fact({ factObj, setFacts }) {
 	// const { factObj } = props;
 	const [isUpdating, setIsUpdating] = useState(false);
 
-	async function handleVote() {
+	async function handleVote(voteType) {
 		//#1.Update supabase
 		setIsUpdating(true); //disable button for clicking before database update
 		const { data: updatedFact, error } = await supabase
 			.from("facts")
-			.update({ votesInteresting: factObj.votesInteresting + 1 })
+			.update({ [voteType]: factObj[voteType] + 1 })
+			// .update({ votesInteresting: factObj.votesInteresting + 1 })
 			.eq("id", factObj.id)
 			.select();
 		// console.log(updatedFact);
