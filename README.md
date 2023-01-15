@@ -32,8 +32,6 @@
 
 </details>
 
-&emsp;
-
 <details>
 <summary>Notes about create-react-app:</summary>
 
