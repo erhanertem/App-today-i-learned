@@ -15,7 +15,7 @@
 
 #### Project Preview
 
-![Screenshot](#)
+![Screenshot](screenshot.webp)
 
 ---
 
