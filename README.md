@@ -15,7 +15,7 @@
 
 #### [Today-I-Learned](https://today-i-learned-app-erhan-ertem.netlify.app)
 
-<img src="./screenshot.webp" width="500px"/>
+<img src="./screenshot.webp" width="800px"/>
 
 ---
 
